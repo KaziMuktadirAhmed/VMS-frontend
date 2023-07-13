@@ -1,3 +1,4 @@
 # BrainDevs frontend
 
-This is the main branch for VMS
+This is the hotfix branch for VMS.
+this is where any hotfix is implemented. The hotfix is then merged into the main and the develop branch.
