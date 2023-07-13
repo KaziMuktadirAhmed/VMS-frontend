@@ -14,5 +14,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run end-to-end tests
-        run: npm run cypress:open
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          build: npm run build
+          start: npm start
+
+    #   - name: Run end-to-end tests
+    #     run: npm run cypress:run
