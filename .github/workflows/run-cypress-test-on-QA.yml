@@ -3,7 +3,7 @@ name: Run cypress test on QA PR
 on:
   push:
     branches:
-      - main
+      - QA
   pull_request:
     branches:
       - QA
