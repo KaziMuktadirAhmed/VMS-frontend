@@ -1,7 +1,23 @@
 import useUser from "../../hooks/useUser";
+import getData from "../../helpers/getData";
+import { useEffect, useState } from "react";
 
 export default function Certificate() {
   const { user } = useUser();
+
+  const [vaccinations, setVaccinations] = useState(null);
+
+  const fetchVaccinationInfo = async () => {
+    const response = await getData(
+      `${import.meta.env.VITE_BACKEND_URL}/certificate/${user.n_id}`
+    );
+    console.log("list", response.data.vaccinations);
+    setVaccinations(response.data.vaccinations);
+  };
+
+  useEffect(() => {
+    fetchVaccinationInfo();
+  });
 
   return (
     <div className="flex flex-col justify-center my-16">
@@ -24,20 +40,29 @@ export default function Certificate() {
           <h1 className="text-md">
             Here are the list of Vaccine Name and Date of Vaccination
           </h1>
-          <table className="border-black border-1">
-            <tr>
-              <th>Vaccine Name</th>
-              <th>Vaccination Date</th>
-            </tr>
-            <tr>
-              <td>Pfizer</td>
-              <td>03/08/2022</td>
-            </tr>
-            <tr>
-              <td>Sputonic</td>
-              <td>05/11/2022</td>
-            </tr>
-          </table>
+          <div className="mt-2 text-xl">
+            <table className="border-black border-1">
+              <thead>
+                <tr>
+                  <th className="border border-black">Vaccine Name</th>
+                  <th className="border border-black">Vaccination Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {vaccinations &&
+                  vaccinations.map((vaccination, index) => (
+                    <tr key={index}>
+                      <td className="border border-black">
+                        {vaccination.vaccine_name}
+                      </td>
+                      <td className="border border-black">
+                        {vaccination.vaccination_date}
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
