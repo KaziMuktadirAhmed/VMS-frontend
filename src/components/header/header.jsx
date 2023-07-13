@@ -1,8 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import HeaderMenu from "../header-menu/HeaderMenu";
+import useUser from "../../hooks/useUser";
 
 export default function Header() {
   const location = useLocation();
+  const { user } = useUser();
 
   return (
     <header className="flex flex-row items-center justify-between w-full pl-8 pr-8 h-14 bg-slate-500">
@@ -20,7 +22,9 @@ export default function Header() {
           }`}
         >
           <p className={`font-mono font-semibold text-center text-white`}>
-            Account
+            {user.name !== undefined && user.name !== ""
+              ? user.name
+              : "Account"}
           </p>
         </Link>
       </div>

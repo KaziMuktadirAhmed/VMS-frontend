@@ -1,6 +1,21 @@
+import { useRef } from "react";
+import useUser from "../../hooks/useUser";
+
 export default function Register({ toggle }) {
+  const nameRef = useRef();
+  const passwordRef = useRef();
+  const nidRef = useRef();
+  const addressRef = useRef();
+
+  const { setUser } = useUser();
+
   function onSubmitHandler() {
-    console.log("doing something");
+    setUser({
+      name: nameRef.current.value,
+      nid: nidRef.current.value,
+      address: addressRef.current.value,
+      password: passwordRef.current.value,
+    });
   }
   return (
     <form className="flex flex-col w-1/3 gap-4">
@@ -8,16 +23,25 @@ export default function Register({ toggle }) {
         type="text"
         placeholder="name"
         className="p-4 text-xl text-center rounded-md focus:outline-none"
+        ref={nameRef}
       />
       <input
         type="text"
         placeholder="nid"
         className="p-4 text-xl text-center rounded-md focus:outline-none"
+        ref={nidRef}
+      />
+      <input
+        type="password"
+        placeholder="password"
+        className="p-4 text-xl text-center rounded-md focus:outline-none"
+        ref={passwordRef}
       />
       <input
         type="text"
         placeholder="address"
         className="h-40 p-4 text-xl text-center rounded-md focus:outline-none"
+        ref={addressRef}
       />
       <button
         type="submit"

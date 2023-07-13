@@ -1,6 +1,14 @@
+import { useRef } from "react";
+import useUser from "../../hooks/useUser";
+
 export default function Login({ toggle }) {
+  const nidRef = useRef();
+  const passwordRef = useRef();
+
+  const { setUser } = useUser();
+
   function onSubmitHandler() {
-    console.log("doing something");
+    setUser({ nid: nidRef.current.value, password: passwordRef.current.value });
   }
   return (
     <form className="flex flex-col w-1/3 gap-4">
@@ -8,11 +16,13 @@ export default function Login({ toggle }) {
         type="text"
         placeholder="nid"
         className="p-4 text-xl text-center rounded-md focus:outline-none"
+        ref={nidRef}
       />
       <input
-        type="text"
+        type="password"
         placeholder="password"
         className="p-4 text-xl text-center rounded-md focus:outline-none"
+        ref={passwordRef}
       />
       <button
         type="submit"

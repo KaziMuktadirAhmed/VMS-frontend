@@ -8,17 +8,20 @@ import Auth from "./pages/auth/auth";
 import Dashboard from "./pages/dashboard/dashboard";
 import Instruction from "./pages/instruction/Instruction";
 import Certificate from "./pages/certificate/certificate";
+import { AuthProvider } from "./contexts/AuthContext";
 
 export default function App() {
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/auth" element={<Auth />}></Route>
-        <Route path="/dashboard" element={<Dashboard />}></Route>
-        <Route path="/instruction" element={<Instruction />}></Route>
-        <Route path="/certificate" element={<Certificate />}></Route>
-      </Routes>
-    </Layout>
+    <AuthProvider>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/auth" element={<Auth />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="/instruction" element={<Instruction />}></Route>
+          <Route path="/certificate" element={<Certificate />}></Route>
+        </Routes>
+      </Layout>
+    </AuthProvider>
   );
 }
