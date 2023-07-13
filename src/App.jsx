@@ -6,6 +6,7 @@ import Auth from "./pages/auth/auth";
 import Dashboard from "./pages/dashboard/dashboard";
 
 import "./App.css";
+import Instruction from "./pages/instruction/Instruction";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/auth" element={<Auth />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route>
+        <Route path="/instruction" element={<Instruction />}></Route>
       </Routes>
     </Layout>
   );
