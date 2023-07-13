@@ -1,3 +1,8 @@
 export default function Certificate() {
-  return <div>certificate</div>;
+  return (
+    <div>
+      <h1>Certificates oh something</h1>
+      <p>certificate</p>
+    </div>
+  );
 }
