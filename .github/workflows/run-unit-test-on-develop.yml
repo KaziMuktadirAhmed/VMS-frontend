@@ -1,12 +1,12 @@
-name: Run Unit test on feature push
+name: Run Unit test on develop branch push
 
 on:
   push:
     branches:
-      - "feature/*"
+      - develop
   pull_request:
     branches:
-      - "feature/*"
+      - develop
   workflow_dispatch:
 
 jobs:
