@@ -3,10 +3,10 @@ import CradLayout from "../../components/CardLayout/CradLayout";
 
 export default function Home() {
   return (
-    <div className="h-full">
+    <div className="h-screen">
       {/* Welcome block */}
       <h1>Welcome to VMS</h1>
-      <p>Login pr create an account to get started for youre next shot</p>
+      <p>Login or create an account to get started for youre next shot</p>
 
       {/* Instruction cards */}
       <CradLayout className="">
