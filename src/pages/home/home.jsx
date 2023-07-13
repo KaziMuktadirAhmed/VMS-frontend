@@ -3,7 +3,7 @@ import CradLayout from "../../components/CardLayout/CradLayout";
 
 export default function Home() {
   return (
-    <div>
+    <div className="h-full">
       {/* Welcome block */}
       <h1>Welcome to VMS</h1>
       <p>Login pr create an account to get started for youre next shot</p>
