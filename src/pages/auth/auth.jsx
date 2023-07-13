@@ -29,6 +29,7 @@ export default function Auth() {
             className="h-7"
             onClick={() => {
               setShowError((prev) => !prev);
+              setAuthError({});
             }}
           >
             <img src={CrossSvg} alt="Close" className="h-6" />

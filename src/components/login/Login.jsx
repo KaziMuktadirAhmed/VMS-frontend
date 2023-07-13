@@ -8,8 +8,6 @@ export default function Login({ toggle, setError }) {
 
   const { setUser } = useUser();
 
-  // useEffect(() => {}, [])
-
   async function onSubmitHandler() {
     try {
       const userData = {
