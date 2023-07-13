@@ -19,6 +19,7 @@ jobs:
         with:
           build: npm run build
           start: npm start
+          browser: chrome
 
     #   - name: Run end-to-end tests
     #     run: npm run cypress:run
