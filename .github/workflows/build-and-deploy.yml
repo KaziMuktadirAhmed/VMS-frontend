@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BUCKET: www.braindev.com
-      DIST: build
+      DIST: dist
       REGION: eu-north-1
       DIST_ID: E2HNJ0M82UQ8G3
 
