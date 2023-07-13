@@ -2,25 +2,36 @@ import { useRef } from "react";
 import useUser from "../../hooks/useUser";
 import postData from "../../helpers/postData";
 
-export default function Login({ toggle }) {
+export default function Login({ toggle, setError }) {
   const nidRef = useRef();
   const passwordRef = useRef();
 
   const { setUser } = useUser();
 
+  // useEffect(() => {}, [])
+
   async function onSubmitHandler() {
-    const userData = {
-      n_id: nidRef.current.value,
-      password: passwordRef.current.value,
-    };
-    setUser({ nid: nidRef.current.value, password: passwordRef.current.value });
-    console.log("ok");
-    const response = await postData(
-      `${import.meta.env.VITE_BACKEND_URL}/auth/login`,
-      userData
-    );
-    console.log(response.data, "ok");
+    try {
+      const userData = {
+        n_id: nidRef.current.value,
+        password: passwordRef.current.value,
+      };
+      setUser({
+        nid: nidRef.current.value,
+        password: passwordRef.current.value,
+      });
+      console.log("ok");
+      const response = await postData(
+        `${import.meta.env.VITE_BACKEND_URL}/auth/login`,
+        userData
+      );
+      console.log(response.data, "ok");
+      console.log("hello hello");
+    } catch (error) {
+      setError(error.response.data.message);
+    }
   }
+
   return (
     <form className="flex flex-col w-1/3 gap-4">
       <input
