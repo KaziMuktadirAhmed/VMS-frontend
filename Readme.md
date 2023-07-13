@@ -1,4 +1,4 @@
 # BrainDevs frontend
 
-This is the staging branch for VMS.
-this is where final check is performed before merging into main/production branch
+This is the hotfix branch for VMS.
+this is where any hotfix is implemented. The hotfix is then merged into the main and the develop branch.
