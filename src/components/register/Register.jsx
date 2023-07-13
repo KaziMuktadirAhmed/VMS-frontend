@@ -10,12 +10,14 @@ export default function Register({ toggle }) {
   const { setUser } = useUser();
 
   function onSubmitHandler() {
-    setUser({
+    const newUserData = {
       name: nameRef.current.value,
       nid: nidRef.current.value,
       address: addressRef.current.value,
       password: passwordRef.current.value,
-    });
+    };
+
+    setUser(newUserData);
   }
   return (
     <form className="flex flex-col w-1/3 gap-4">

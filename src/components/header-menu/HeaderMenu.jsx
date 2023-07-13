@@ -2,7 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function HeaderMenu() {
   const location = useLocation();
-  console.log(location.pathname);
 
   return (
     <div className="flex flex-row items-center justify-start h-full">

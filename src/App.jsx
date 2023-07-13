@@ -8,6 +8,7 @@ import Auth from "./pages/auth/auth";
 import Dashboard from "./pages/dashboard/dashboard";
 import Instruction from "./pages/instruction/Instruction";
 import Certificate from "./pages/certificate/certificate";
+
 import { AuthProvider } from "./contexts/AuthContext";
 
 export default function App() {

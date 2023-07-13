@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import useUser from "../../hooks/useUser";
+import postData from "../../helpers/postData";
 
 export default function Login({ toggle }) {
   const nidRef = useRef();
@@ -7,8 +8,18 @@ export default function Login({ toggle }) {
 
   const { setUser } = useUser();
 
-  function onSubmitHandler() {
+  async function onSubmitHandler() {
+    const userData = {
+      n_id: nidRef.current.value,
+      password: passwordRef.current.value,
+    };
     setUser({ nid: nidRef.current.value, password: passwordRef.current.value });
+    console.log("ok");
+    const response = await postData(
+      `${import.meta.env.VITE_BACKEND_URL}/auth/login`,
+      userData
+    );
+    console.log(response.data, "ok");
   }
   return (
     <form className="flex flex-col w-1/3 gap-4">
