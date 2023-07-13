@@ -8,26 +8,34 @@ export default function HeaderMenu() {
       <Link
         to="/"
         className={`flex flex-row items-center ${
-          location.pathname === "/" && "border-b-4 border-black"
-        } h-full pl-2 pr-2 text-center hover:border-b-4 hover:border-black`}
+          location.pathname === "/" && "border-b-4 border-green-500"
+        } h-full pl-2 pr-2 text-center hover:border-b-4 hover:border-green-500`}
       >
-        <p className="font-mono font-semibold">Home</p>
+        <p className="font-mono font-semibold text-white">Home</p>
+      </Link>
+      <Link
+        to="/dashboard"
+        className={`flex flex-row items-center ${
+          location.pathname === "/dashboard" && "border-b-4 border-green-500"
+        } h-full pl-2 pr-2 text-center hover:border-b-4 hover:border-green-500`}
+      >
+        <p className="font-mono font-semibold text-white">Dashboard</p>
       </Link>
       <Link
         to="/instruction"
         className={`flex flex-row items-center ${
-          location.pathname === "/instruction" && "border-b-4 border-black"
-        } h-full pl-2 pr-2 text-center hover:border-b-4 hover:border-black`}
+          location.pathname === "/instruction" && "border-b-4 border-green-500"
+        } h-full pl-2 pr-2 text-center hover:border-b-4 hover:border-green-500`}
       >
-        <p className="font-mono font-semibold">Instruction</p>
+        <p className="font-mono font-semibold text-white">Instruction</p>
       </Link>
       <Link
         to="/certificate"
         className={`flex flex-row items-center ${
-          location.pathname === "/certificate" && "border-b-4 border-black"
-        } h-full pl-2 pr-2 text-center hover:border-b-4 hover:border-black`}
+          location.pathname === "/certificate" && "border-b-4 border-green-500"
+        } h-full pl-2 pr-2 text-center hover:border-b-4 hover:border-green-500`}
       >
-        <p className="font-mono font-semibold">Certificate</p>
+        <p className="font-mono font-semibold text-white">Certificate</p>
       </Link>
     </div>
   );

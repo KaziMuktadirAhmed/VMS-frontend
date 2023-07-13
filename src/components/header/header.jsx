@@ -7,7 +7,7 @@ export default function Header() {
   const { user } = useUser();
 
   return (
-    <header className="flex flex-row items-center justify-between w-full pl-8 pr-8 h-14 bg-slate-500">
+    <header className="flex flex-row items-center justify-between w-full pl-8 pr-8 h-14 bg-[#033D6C]">
       <Link to="/" className="font-mono text-2xl font-semibold text-white">
         Logo
       </Link>
