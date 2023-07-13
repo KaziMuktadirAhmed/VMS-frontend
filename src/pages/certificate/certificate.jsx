@@ -1,4 +1,8 @@
+import useUser from "../../hooks/useUser";
+
 export default function Certificate() {
+  const { user } = useUser();
+
   return (
     <div className="flex flex-col justify-center my-16">
       <div className="my-3 border-b">
@@ -10,11 +14,10 @@ export default function Certificate() {
       <div className="flex flex-col items-center justify-center">
         <div>
           <h1 className="text-lg">
-            This is certified that <b>Kazi Muktadir Ahmed</b>
+            This is certified that <b>{user.name}</b>
           </h1>
           <h1 className="text-lg">
-            who's National ID is: 1545487933158 successfully complete
-            vaccination
+            who's National ID is: {user.n_id} successfully complete vaccination
           </h1>
         </div>
         <div className="mt-5">
