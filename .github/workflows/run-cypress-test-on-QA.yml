@@ -1,6 +1,9 @@
 name: Run cypress test on QA PR
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - QA
