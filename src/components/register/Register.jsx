@@ -1,7 +1,8 @@
 import { useRef } from "react";
 import useUser from "../../hooks/useUser";
+import postData from "../../helpers/postData";
 
-export default function Register({ toggle }) {
+export default function Register({ toggle, setError }) {
   const nameRef = useRef();
   const passwordRef = useRef();
   const nidRef = useRef();
@@ -9,15 +10,25 @@ export default function Register({ toggle }) {
 
   const { setUser } = useUser();
 
-  function onSubmitHandler() {
-    const newUserData = {
-      name: nameRef.current.value,
-      nid: nidRef.current.value,
-      address: addressRef.current.value,
-      password: passwordRef.current.value,
-    };
+  async function onSubmitHandler() {
+    try {
+      const newUserData = {
+        name: nameRef.current.value,
+        nid: nidRef.current.value,
+        address: addressRef.current.value,
+        password: passwordRef.current.value,
+      };
 
-    setUser(newUserData);
+      const response = await postData(
+        `${import.meta.env.VITE_BACKEND_URL}/auth/register`,
+        newUserData
+      );
+
+      setUser(newUserData);
+      console.log(response);
+    } catch (error) {
+      setError(error.response.data);
+    }
   }
   return (
     <form className="flex flex-col w-1/3 gap-4">

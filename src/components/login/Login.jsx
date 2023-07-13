@@ -26,7 +26,7 @@ export default function Login({ toggle, setError }) {
       console.log(response.data, "ok");
       console.log("hello hello");
     } catch (error) {
-      setError(error.response.data.message);
+      setError(error.response.data);
     }
   }
 
