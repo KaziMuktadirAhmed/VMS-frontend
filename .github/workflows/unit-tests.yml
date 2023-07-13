@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+
+      - name: Check directory
+        run: |
+          pwd
+          ls -al
+          dir
+          cat ./src/pages/auth/auth.jsx
+        shell: bash
+
+      - name: Pre build project for good measure
+        run: npm run build
+
+      - name: Run unit tests
+        run: npm run test
+
+      - name: Run end-to-end tests
+        run: npm run cypress:open
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
