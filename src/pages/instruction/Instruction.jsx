@@ -5,25 +5,23 @@ export default function Instruction() {
         Vaccination Intruction
       </h1>
       <h1 className="px-6 py-6 mx-6 mt-12 text-lg border-2 shadow-lg ">
-        Vaccine Application: Users can apply for the vaccine after register into
+        <b>Step 1:</b> Users can apply for the vaccine after register into
         vaccine management system by input name, n_id, address and password then
-        eligibility criteria. This can be handled by creating a
-        VaccineApplication schema, which stores information about the user's
-        vaccine application, such as the user ID and vaccine preference.
+        eligibility criteria. Then User get a date for vaccination. User can
+        apply for multiple vaccination and show dates of vaccination.
       </h1>
       <h1 className="px-6 py-6 mx-6 mt-12 text-lg border-2 shadow-lg ">
-        Vaccination Scheduling: Once the user's vaccine application is approved,
-        the system assigns a vaccination date. This date should be within the
+        <b>Step 2:</b> Once the user's vaccine application is approved, the
+        system assigns a vaccination date. This date should be within the
         required timeframe after the first dose. The vaccination date can be
         generated using the getVaccinationDate function we discussed earlier,
         and the details can be stored in a Vaccination schema.
       </h1>
       <h1 className="px-6 py-6 mx-6 mt-12 text-lg border-2 shadow-lg ">
-        Vaccine Certificate Generation: When a user requests a vaccine
-        certificate, the system retrieves the user's vaccination records from
-        the Vaccination schema, validates that the user has received both doses,
-        and generates a certificate with the necessary details. The certificate
-        can be stored in a Certificate schema.
+        <b>Step 3:</b> When a user requests a vaccine certificate, the system
+        retrieves the user's vaccination records from the Vaccination record and
+        then and generates a certificate with the necessary details. This
+        certificate will update after each new vaccination
       </h1>
     </div>
   );

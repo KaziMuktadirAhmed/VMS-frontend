@@ -8,22 +8,27 @@ export default function Dashboard() {
   const { user } = useUser();
 
   const [isVaccination, setIsVaccination] = useState(false);
-  const [vaccinations, setVaccinations] = useState(null);
+  const [vaccinations, setVaccinations] = useState([]);
 
   const fetchVaccinationInfo = async () => {
     const response = await getData(
       `${import.meta.env.VITE_BACKEND_URL}/vaccination/${user.n_id}`
     );
-    if (response.data[0].vaccination_date) {
+    if (response.data.length > 0) {
       setIsVaccination(true);
       setVaccinations(response.data);
     }
   };
+
   const createVaccination = async () => {
     const response = await postData(
       `${import.meta.env.VITE_BACKEND_URL}/vaccination/`,
-      user.n_id
+      { n_id: user.n_id }
     );
+    if (response.data.length > 0) {
+      setIsVaccination(true);
+      setVaccinations(response.data);
+    }
   };
 
   useEffect(() => {
@@ -42,32 +47,45 @@ export default function Dashboard() {
 
         <div className="mt-16 text-xl">
           {isVaccination ? (
-            <table className="border-black border-1">
-              <thead>
-                <tr>
-                  <th className="border border-black">No</th>
-                  <th className="border border-black">Vaccination Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {vaccinations &&
-                  vaccinations.map((vaccination, index) => (
-                    <tr key={index}>
-                      <td className="border border-black">{index}</td>
-                      <td className="border border-black">
-                        {vaccination.vaccination_date}
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
+            <div>
+              <table className="border-black border-1">
+                <thead>
+                  <tr>
+                    <th className="border border-black">No</th>
+                    <th className="border border-black">Vaccination Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {vaccinations ? (
+                    vaccinations.map((vaccination, index) => (
+                      <tr key={index}>
+                        <td className="border border-black">{index}</td>
+                        <td className="border border-black">
+                          {vaccination.vaccination_date}
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <div></div>
+                  )}
+                </tbody>
+              </table>
+              <div className="mt-6">
+                <button
+                  className="-ml-12 px-4 py-2 text-white bg-[#033D6C] border-gray-700 shadow-lg border-1 rounded-md"
+                  onClick={createVaccination}
+                >
+                  + Get More Vaccination Date
+                </button>
+              </div>
+            </div>
           ) : (
             <div className="">
               <button
-                className="px-4 py-2 text-white bg-[#033D6C] border-gray-700 shadow-lg border-1"
+                className="px-4 py-2 text-white bg-[#033D6C] border-gray-700 shadow-lg border-1 rounded-md"
                 onClick={createVaccination}
               >
-                + Get Vaccination Date
+                + Get First Vaccination Date
               </button>
             </div>
           )}
