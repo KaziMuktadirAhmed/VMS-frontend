@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <header className="flex flex-row items-center justify-between w-full pl-8 pr-8 h-14 bg-[#033D6C]">
       <Link to="/" className="font-mono text-2xl font-semibold text-white">
-        Logo
+        VMS
       </Link>
       <div className="flex flex-row h-full gap-5">
         <HeaderMenu />
@@ -22,9 +22,7 @@ export default function Header() {
           }`}
         >
           <p className={`font-mono font-semibold text-center text-white`}>
-            {user.name !== undefined && user.name !== ""
-              ? user.name
-              : "Account"}
+            {user.name !== undefined && user.name !== "" ? user.name : "Guest"}
           </p>
         </Link>
       </div>

@@ -1,24 +1,34 @@
 import { Link } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 import getData from "../../helpers/getData";
+import postData from "../../helpers/postData";
 import { useEffect, useState } from "react";
 
 export default function Dashboard() {
   const { user } = useUser();
 
+  const [isVaccination, setIsVaccination] = useState(false);
   const [vaccinations, setVaccinations] = useState(null);
 
   const fetchVaccinationInfo = async () => {
     const response = await getData(
-      `${import.meta.env.VITE_BACKEND_URL}/certificate/${user.n_id}`
+      `${import.meta.env.VITE_BACKEND_URL}/vaccination/${user.n_id}`
     );
-    console.log("list", response.data.vaccinations);
-    setVaccinations(response.data.vaccinations);
+    if (response.data[0].vaccination_date) {
+      setIsVaccination(true);
+      setVaccinations(response.data);
+    }
+  };
+  const createVaccination = async () => {
+    const response = await postData(
+      `${import.meta.env.VITE_BACKEND_URL}/vaccination/`,
+      user.n_id
+    );
   };
 
   useEffect(() => {
     fetchVaccinationInfo();
-  });
+  }, []);
 
   return (
     <div>
@@ -31,27 +41,36 @@ export default function Dashboard() {
         <h1 className="text-2xl">Address: {user.address}</h1>
 
         <div className="mt-16 text-xl">
-          <table className="border-black border-1">
-            <thead>
-              <tr>
-                <th className="border border-black">Vaccine Name</th>
-                <th className="border border-black">Vaccination Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {vaccinations &&
-                vaccinations.map((vaccination, index) => (
-                  <tr key={index}>
-                    <td className="border border-black">
-                      {vaccination.vaccine_name}
-                    </td>
-                    <td className="border border-black">
-                      {vaccination.vaccination_date}
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+          {isVaccination ? (
+            <table className="border-black border-1">
+              <thead>
+                <tr>
+                  <th className="border border-black">No</th>
+                  <th className="border border-black">Vaccination Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {vaccinations &&
+                  vaccinations.map((vaccination, index) => (
+                    <tr key={index}>
+                      <td className="border border-black">{index}</td>
+                      <td className="border border-black">
+                        {vaccination.vaccination_date}
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          ) : (
+            <div className="">
+              <button
+                className="px-4 py-2 text-white bg-[#033D6C] border-gray-700 shadow-lg border-1"
+                onClick={createVaccination}
+              >
+                + Get Vaccination Date
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

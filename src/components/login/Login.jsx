@@ -46,7 +46,7 @@ export default function Login({ toggle, setError }) {
       />
       <button
         type="submit"
-        className="inline-block p-4 text-xl bg-blue-400 rounded-md hover:bg-blue-700 hover:text-white"
+        className="inline-block p-4 text-xl  bg-[#033D6C] rounded-md hover:bg-[#033D6C] hover:text-white"
         onClick={(event) => {
           event.preventDefault();
           onSubmitHandler();

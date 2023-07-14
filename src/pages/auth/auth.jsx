@@ -8,8 +8,6 @@ export default function Auth() {
   const [hasAccount, setHasAccount] = useState(false);
   const [authError, setAuthError] = useState(null);
 
-  console.log(CrossSvg);
-
   return (
     <div className="flex flex-col items-center h-full mt-20">
       {hasAccount ? (

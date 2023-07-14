@@ -26,10 +26,7 @@ export default function Register({ toggle, setError }) {
         newUserData
       );
 
-      console.log("userdata-------", response.data.data);
-
       setUser(response.data.data);
-      console.log(response.data.data);
       navigateTo("/");
     } catch (error) {
       setError(error.response.data);
